@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5fa">
+  <meta name="description" content="FocusFlow is a calm productivity space with a Pomodoro timer and daily task manager.">
+  <title>FocusFlow — Pomodoro & Tasks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="FocusFlow home">
+        <span class="brand-icon" aria-hidden="true">◷</span>
+        <span>focus<span class="brand-accent">flow</span></span>
+      </a>
+      <div class="header-right">
+        <span class="live-status"><span aria-hidden="true"></span> YOUR FOCUS SPACE</span>
+        <button id="themeBtn" class="icon-btn" type="button" aria-label="Switch to dark theme" title="Toggle theme">☾</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="welcome" aria-labelledby="welcomeTitle">
+        <div>
+          <p class="eyebrow">MAKE TODAY COUNT</p>
+          <h1 id="welcomeTitle">Find your <span>flow.</span></h1>
+          <p class="subtitle">One task at a time. One session at a time.</p>
+        </div>
+        <div class="date-card">
+          <span class="date-icon" aria-hidden="true">✳</span>
+          <div><strong id="todayDate">Your day</strong><small>YOUR DAILY RESET</small></div>
+        </div>
+      </section>
+
+      <section class="dashboard" aria-label="Productivity dashboard">
+        <article class="panel timer-panel" aria-labelledby="timerTitle">
+          <div class="panel-heading">
+            <div><p class="eyebrow">STAY IN THE ZONE</p><h2 id="timerTitle">Focus timer</h2></div>
+            <span class="session-badge" id="sessionCount">SESSION 01</span>
+          </div>
+          <div class="mode-tabs" role="group" aria-label="Timer mode">
+            <button class="mode-btn active" type="button" data-mode="work" aria-pressed="true">Focus</button>
+            <button class="mode-btn" type="button" data-mode="short" aria-pressed="false">Short break</button>
+            <button class="mode-btn" type="button" data-mode="long" aria-pressed="false">Long break</button>
+          </div>
+          <div class="timer-wrap">
+            <div class="timer-ring" id="timerRing" role="img" aria-label="Timer progress">
+              <div class="timer-inner">
+                <span class="timer-icon" id="timerIcon" aria-hidden="true">✦</span>
+                <div class="time-display" id="timeDisplay" role="timer" aria-live="off">25:00</div>
+                <span class="timer-caption" id="timerCaption">TIME TO FOCUS</span>
+              </div>
+            </div>
+          </div>
+          <p class="timer-message" id="timerMessage">Small steps lead to big results.</p>
+          <div class="timer-controls">
+            <button class="secondary-btn" id="resetBtn" type="button" aria-label="Reset timer">↺ <span>Reset</span></button>
+            <button class="primary-btn" id="startBtn" type="button"><span id="startIcon" aria-hidden="true">▶</span><span id="startText">Start focus</span></button>
+            <button class="secondary-btn" id="skipBtn" type="button" aria-label="Skip session"><span aria-hidden="true">↠</span> <span>Skip</span></button>
+          </div>
+          <div class="timer-footer"><span>◷ Stay consistent</span><span id="durationLabel">25 min session</span></div>
+        </article>
+
+        <article class="panel tasks-panel" aria-labelledby="tasksTitle">
+          <div class="panel-heading">
+            <div><p class="eyebrow">PLAN YOUR PROGRESS</p><h2 id="tasksTitle">Daily tasks <span class="heading-spark" aria-hidden="true">✳</span></h2></div>
+            <span class="task-total" id="taskTotal">0 tasks</span>
+          </div>
+          <form id="taskForm" class="task-form">
+            <label class="sr-only" for="taskInput">Add a new task</label>
+            <input id="taskInput" type="text" maxlength="180" placeholder="What needs your focus today?" autocomplete="off" required>
+            <button type="submit" aria-label="Add task">+</button>
+          </form>
+          <div class="task-progress">
+            <div class="progress-labels"><span>Daily progress</span><strong id="progressText">0%</strong></div>
+            <div class="progress-track"><div class="progress-fill" id="progressFill" role="progressbar" aria-label="Tasks completed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+          </div>
+          <div class="task-filters" role="group" aria-label="Filter tasks">
+            <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-btn" type="button" data-filter="active" aria-pressed="false">Pending</button>
+            <button class="filter-btn" type="button" data-filter="completed" aria-pressed="false">Completed</button>
+          </div>
+          <ul class="task-list" id="taskList" aria-label="Daily task list"></ul>
+          <div class="empty-state" id="emptyState">
+            <span class="empty-icon" aria-hidden="true">✳</span>
+            <strong id="emptyTitle">A fresh start.</strong>
+            <p id="emptyMessage">Add your first task and make today count.</p>
+          </div>
+          <div class="task-footer"><span id="remainingText">Nothing pending yet</span><button id="clearCompletedBtn" class="text-btn" type="button" disabled>Clear completed</button></div>
+        </article>
+      </section>
+
+      <section class="bottom-strip" aria-label="Daily reminder">
+        <div class="quote-mark" aria-hidden="true">“</div>
+        <div><p class="quote">Focus on progress, not perfection.</p><p class="quote-sub">YOUR REMINDER TO KEEP GOING</p></div>
+        <div class="strip-decoration" aria-hidden="true">✳</div>
+      </section>
+    </main>
+    <footer class="page-footer"><span>FOCUSFLOW <span class="footer-dot">●</span> BUILT FOR BETTER DAYS</span><span>Less distraction. More intention.</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
